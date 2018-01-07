@@ -96,6 +96,42 @@
             color: #000000;
             background-color: rgba(0,255,255,0.75);
         }
+        .gomyblog {
+            display:inline-block;
+            animation:lol 2s infinite;
+
+        }
+        @keyframes lol {
+            0% {transform:rotate(0deg)}
+            33% {transform:rotate(30deg)}
+            66% {transform:rotate(0deg)}
+            100% {transform:rotate(-30deg)}
+        }
+
+        .fixSec8{position: fixed;bottom: 100px;right: 150px;display: none}
+        .fixSec8 a{display:inline-block;color: #c7b5b5;font-size:14px;font-weight: bold;cursor: none;text-decoration: none;}
+
+        .colorChange {
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 120%;
+            background-image: -webkit-linear-gradient(left, #df21f5, #87ceeb 25%, orange 50%, #000a80 75%, #df21f5);
+            animation: content-animation 2s infinite linear
+        }
+        @keyframes content-animation {
+            0% {
+                background-position: 0, 0
+            }
+            100% {
+                background-position: -100% 0
+            }
+        }
+
+        .fixSec8continue{position: fixed;bottom: 100px;right: 150px;font-size: 35px;color:#fff;animation: sec8Rote 3s linear infinite;transform-origin: 50% 50%  }
+        @keyframes sec8Rote {
+            0% {transform:rotate(0deg)}
+            100% {transform:rotate(360deg)}
+        }
     </style>
 </head>
 <body>
@@ -108,11 +144,17 @@
 <div id="container"></div>
 <div id="info" style="color:#fabc6e">我们走遍全球吧！</div>
 <div id="menu">
-    <button class="hide-words" id="table">点击另外几个试试</button>
+    <button class="hide-words gomyblog" id="table">点击另外几个试试</button>
     <button class="hide-words" id="sphere">我们走遍地球</button>
     <button class="hide-words" id="helix">转一转</button>
-    <button class="hide-words" id="grid">好不好</button>
+    <button class="hide-words " id="grid">好不好</button>
 </div>
+
+<div class="fixSec8">
+    <a href="javascript:;">拖动鼠标或者滚轮试试</a>
+</div>
+
+<div style="display:none;" class="fixSec8continue colorChange">待续!</div>
 
 <script>
     var table = [
@@ -481,6 +523,20 @@
     $(document).on('click',$(".elementClick"),function (e) {
         digImageChange(e.target)
     });
+    $("#sphere").one('click',function () {
+        $(".fixSec8").fadeIn(1000);
+        setTimeout(function () {
+            $(".fixSec8").fadeOut(1000)
+        },10000);
+    });
+    $("#grid").one('click',function () {
+        setTimeout(function () {
+            $(".fixSec8continue").slideToggle();
+        },10000);
+        setTimeout(function () {
+            $(".fixSec8continue").slideToggle();
+        },16000)
+    })
    
 </script>
 </body>
