@@ -132,6 +132,81 @@
             0% {transform:rotate(0deg)}
             100% {transform:rotate(360deg)}
         }
+        .happiness{position: fixed;top:100px;right: 100px;width: 50px;height: 50px;border-radius: 50%;overflow: hidden;animation: rote360 10s linear infinite;transform-origin: center;display: none}
+        .happiness img{width: 90px;transform: translate3d(-23px,0px,0);cursor: pointer;}
+
+        @keyframes rote360 {
+            0% {transform:rotate(0deg)}
+            100% {transform:rotate(360deg)}
+        }
+
+        .happiness.fixHappy {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            right: 50%;
+            bottom: 50%;
+            border-radius: 0;
+            animation: fixShow 6s ease-out forwards;
+            z-index: 2;
+            transform: translate3d(-50%,-50%,0);
+            filter:blur(4px)
+
+        }
+
+        .happiness.fixHappy img {
+            width: 100%;
+            transform: translate3d(0px, 0px, 0);
+        }
+        @keyframes fixShow {
+            0% {width:50px;height: 50px; transform: rotate(0deg); }
+            100% {width: 100%;height: 100%;transform: rotate(360deg)  ;left:0 ;top:0;filter:blur(0)}
+        }
+
+        .life-love {
+            display: none;
+            position: absolute;
+            top: 50%;
+            bottom: 50%;
+            width: 100%;
+            text-align: center;
+            z-index: 3;
+            color: #fff;
+            font-size: 36px;
+            /*animation: lifeLoveFont 6s ease-out forwards;*/
+            animation: neon5 6s ease-in-out  forwards;
+            cursor: pointer;
+        }
+        /*@keyframes lifeLoveFont {
+            0% {font-size: 12px}
+            100% {font-size: 36px;}
+        }*/
+
+        /*.life-love:hover{animation: neon5 1.5s ease-in-out infinite alternate;}*/
+        @keyframes neon5 {
+            from {
+                font-size: 12px;
+                text-shadow: 0 0 10px #fff,
+                0 0 20px  #fff,
+                0 0 30px  #fff,
+                0 0 40px  #FF9900,
+                0 0 70px  #FF9900,
+                0 0 80px  #FF9900,
+                0 0 100px #FF9900,
+                0 0 150px #FF9900;
+            }
+            to {
+                font-size: 36px;
+                text-shadow: 0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 15px #fff,
+                0 0 20px #FF9900,
+                0 0 35px #FF9900,
+                0 0 40px #FF9900,
+                0 0 50px #FF9900,
+                0 0 75px #FF9900;
+            }
+        }
     </style>
 </head>
 <body>
@@ -155,6 +230,8 @@
 </div>
 
 <div style="display:none;" class="fixSec8continue colorChange">待续!</div>
+<div class="happiness "><img src="qinBIgImage/-39.jpg" alt=""></div>
+<div class="life-love ">我men的幸福时刻！</div>
 
 <script>
     var table = [
@@ -535,7 +612,17 @@
         },10000);
         setTimeout(function () {
             $(".fixSec8continue").slideToggle();
+            $(".happiness").show();
         },16000)
+    });
+    $(".happiness").click(function (e) {
+        $(this).toggleClass("fixHappy");
+        $(".life-love").toggle();
+    });
+    $(".happiness.fixHappy img").on("click",function () {
+        console.log(1);
+        $(".happiness.fixHappy").toggleClass("fixHappy");
+        $(".life-love").toggle();
     })
    
 </script>
