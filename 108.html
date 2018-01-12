@@ -132,7 +132,16 @@
             0% {transform:rotate(0deg)}
             100% {transform:rotate(360deg)}
         }
-        .happiness{position: fixed;top:100px;right: 100px;width: 50px;height: 50px;border-radius: 50%;overflow: hidden;animation: rote360 10s linear infinite;transform-origin: center;display: none}
+        .happiness{position: fixed;top:100px;right: 100px;width: 50px;height: 50px;border-radius: 50%;overflow: hidden;animation: rote360 40s linear infinite;transform-origin: center;display: none;
+            filter:blur(1px);
+            box-shadow: 0 0 5px #fff,
+            0 0 10px  #fff,
+            0 0 15px  #fff,
+            0 0 20px  #FF9900,
+            0 0 25px  #FF9900,
+            0 0 30px  #FF9900,
+            0 0 35px #FF9900,
+            0 0 40px #FF9900;}
         .happiness img{width: 90px;transform: translate3d(-23px,0px,0);cursor: pointer;}
 
         @keyframes rote360 {
@@ -150,10 +159,38 @@
             animation: fixShow 6s ease-out forwards;
             z-index: 2;
             transform: translate3d(-50%,-50%,0);
-            filter:blur(4px)
+            filter:blur(12px);
+            box-shadow: 0 0 15px #fff,
+            0 0 20px  #fff,
+            0 0 30px  #fff,
+            0 0 40px  #FF9900,
+            0 0 70px  #FF9900,
+            0 0 80px  #FF9900,
+            0 0 100px #FF9900,
+            0 0 150px #FF9900;
 
         }
-
+        .posi{display: none}
+        .happiness.fixHappy.finish .posi{
+            display: block;
+            position: absolute;
+            top:0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            cursor: pointer;
+            box-shadow: 0 0 15px #fff inset,
+            0 0 20px  #fff inset,
+            0 0 30px  #fff inset,
+            0 0 40px  #FF9900 inset,
+            0 0 70px  #FF9900 inset,
+            0 0 80px  #FF9900 inset,
+            0 0 100px #FF9900 inset,
+            0 0 150px #FF9900 inset;
+        }
+        .happiness.fixHappy.finish img{
+            animation:scale-linear  40s linear infinite alternate;
+        }
         .happiness.fixHappy img {
             width: 100%;
             transform: translate3d(0px, 0px, 0);
@@ -175,7 +212,12 @@
             font-size: 36px;
             /*animation: lifeLoveFont 6s ease-out forwards;*/
             animation: neon5 6s ease-in-out  forwards;
+            /*animation: neon5 6s linear  forwards ;*/
             cursor: pointer;
+        }
+        .life-love.rotate{
+            transform-origin: 50% 25px;
+            animation: neon5Rotate 40s ease-in-out infinite ;
         }
         /*@keyframes lifeLoveFont {
             0% {font-size: 12px}
@@ -194,6 +236,7 @@
                 0 0 80px  #FF9900,
                 0 0 100px #FF9900,
                 0 0 150px #FF9900;
+                /*transform: rotate(0deg);*/
             }
             to {
                 font-size: 36px;
@@ -205,7 +248,37 @@
                 0 0 40px #FF9900,
                 0 0 50px #FF9900,
                 0 0 75px #FF9900;
+                /*transform: rotate(360deg);*/
             }
+        }
+        @keyframes neon5Rotate {
+            from {
+                text-shadow: 0 0 15px #fff,
+                0 0 20px  #fff,
+                0 0 30px  #fff,
+                0 0 40px  #FF9900,
+                0 0 70px  #FF9900,
+                0 0 80px  #FF9900,
+                0 0 100px #FF9900,
+                0 0 150px #FF9900;
+                transform: rotate(0deg);
+            }
+            to {
+                text-shadow: 0 0 3px #fff,
+                0 0 10px #fff,
+                0 0 15px #fff,
+                0 0 20px #FF9900,
+                0 0 35px #FF9900,
+                0 0 40px #FF9900,
+                0 0 50px #FF9900,
+                0 0 75px #FF9900;
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes scale-linear {
+            0%{transform:scale(1);}
+            100%{transform:scale(1.2);}
         }
     </style>
 </head>
@@ -230,7 +303,10 @@
 </div>
 
 <div style="display:none;" class="fixSec8continue colorChange">待续!</div>
-<div class="happiness "><img src="qinBIgImage/-39.jpg" alt=""></div>
+<div  class="happiness ">
+    <img src="qinBIgImage/-39.jpg" alt="">
+    <div class="posi"></div>
+</div>
 <div class="life-love ">我men的幸福时刻！</div>
 
 <script>
@@ -615,16 +691,22 @@
             $(".happiness").show();
         },16000)
     });
+
     $(".happiness").click(function (e) {
         $(this).toggleClass("fixHappy");
-        $(".life-love").toggle();
+        $(".life-love").toggle().removeClass("rotate");
+        $(".happiness.fixHappy").removeClass("finish");
+        setTimeout(function () {
+            $(".life-love").addClass("rotate");
+        },6500);
+        setTimeout(function () {
+            $(".happiness.fixHappy").addClass("finish");
+        },6000)
     });
     $(".happiness.fixHappy img").on("click",function () {
-        console.log(1);
         $(".happiness.fixHappy").toggleClass("fixHappy");
         $(".life-love").toggle();
     })
-   
 </script>
 </body>
 </html>
