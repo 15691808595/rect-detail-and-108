@@ -170,6 +170,26 @@
             0 0 150px #FF9900;
 
         }
+        .happiness.fixHappy.finish:after{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 100%);
+            top: 0;
+            left: -500px;
+            transform: skewX(-45deg);
+            animation:ss  8s linear infinite ;
+            animation-delay:2s
+            /*animation:ss  3s linear infinite ;*/
+        }
+
+        @keyframes ss {
+            0% {left: -500px}
+            8% {left: 2000px;}
+            100% {left: 6000px;}
+        }
         .posi{display: none}
         .happiness.fixHappy.finish .posi{
             display: block;
@@ -303,7 +323,7 @@
 </div>
 
 <div style="display:none;" class="fixSec8continue colorChange">待续!</div>
-<div  class="happiness ">
+<div  style="display: block" class="happiness ">
     <img src="qinBIgImage/-39.jpg" alt="">
     <div class="posi"></div>
 </div>
