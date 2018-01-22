@@ -170,17 +170,26 @@
             0 0 150px #FF9900;
 
         }
-        .happiness.fixHappy.finish:after{
+        .happiness.fixHappy.finish:after,
+        .happiness.fixHappy.finish .xx{
             content: '';
             position: absolute;
             display: block;
-            width: 100px;
             height: 100%;
             background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 100%);
             top: 0;
             left: -500px;
             transform: skewX(-45deg);
+        }
+        .happiness.fixHappy.finish:after{
+            width: 100px;
             animation:ss  8s linear infinite ;
+            animation-delay:2s
+            /*animation:ss  3s linear infinite ;*/
+        }
+        .happiness.fixHappy.finish .xx{
+            width: 100px;
+            animation:ss  4s linear infinite ;
             animation-delay:2s
             /*animation:ss  3s linear infinite ;*/
         }
@@ -323,9 +332,10 @@
 </div>
 
 <div style="display:none;" class="fixSec8continue colorChange">待续!</div>
-<div   class="happiness ">
+<div  class="happiness ">
     <img src="qinBIgImage/-39.jpg" alt="">
     <div class="posi"></div>
+    <div class="xx"></div>
 </div>
 <div class="life-love ">我men的幸福时刻！</div>
 
@@ -703,13 +713,16 @@
         },10000);
     });
     $("#grid").one('click',function () {
+        $(".fixSec8continue").slideToggle();
+//        $(".fixSec8continue").slideToggle();
+        $(".happiness").show();
         setTimeout(function () {
             $(".fixSec8continue").slideToggle();
-        },10000);
-        setTimeout(function () {
-            $(".fixSec8continue").slideToggle();
-            $(".happiness").show();
-        },16000)
+        },6000);
+//        setTimeout(function () {
+//            $(".fixSec8continue").slideToggle();
+//            $(".happiness").show();
+//        },16000)
     });
 
     $(".happiness").click(function (e) {
